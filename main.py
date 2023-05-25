@@ -1,27 +1,28 @@
-from functions import *
+from functions import add_quote
 
 def menu():
-    print("\n==== Programming Quotes ====")
-    print("1. Random quote")
-    print("2. All quotes")
+    print("1. Add a quote")
+    print("2. Display quotes")
     print("3. Exit")
+    choice = input("Enter your choice: ")
+    return choice
 
 def main():
-    while True:
-        quotes = load_quotes("quotes.txt")
-        menu()
+    quotes = []
+    filename = "quotes.txt"
 
-        choice = input("Choose your an action (1-3): ")
-        
+    while True:
+        choice = menu()
+
         if choice == "1":
-            print_quote(random_quote(quotes))
+            add_quote(quotes, filename)
+            print("Quote added successfully!")
         elif choice == "2":
-            view_quotes(quotes)
+            display_quotes(filename)
         elif choice == "3":
-            print("Good bye...")
             break
         else:
-            print("Invalid input")
+            print("Invalid choice. Please try again.")
 
 if __name__ == "__main__":
     main()
